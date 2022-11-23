@@ -13,9 +13,9 @@ while True:
         x=random.randint(1,3)
         if x==1:
             computer_choice="rock"
-        if x==2:
+        elif x==2:
             computer_choice="paper"
-        if x==3:
+        elif x==3:
             computer_choice="scissors"
 
         user_choice=input("enter your choice: rock, paper, scissors:")
@@ -25,15 +25,15 @@ while True:
         print("🧓:",user_choice)
         if computer_choice=="rock" and user_choice=="paper":
             user_score=user_score+1
-        if computer_choice=="rock" and user_choice=="scissors":
+        elif computer_choice=="rock" and user_choice=="scissors":
             computer_score=computer_score+1
-        if computer_choice=="paper" and user_choice=="rock":
+        elif computer_choice=="paper" and user_choice=="rock":
             computer_score=computer_score+1
-        if computer_choice=="paper" and user_choice=="scissors":
+        elif computer_choice=="paper" and user_choice=="scissors":
             user_score=user_score+1
-        if computer_choice=="scissors" and user_choice=="rock":
+        elif computer_choice=="scissors" and user_choice=="rock":
             user_score=user_score+1
-        if computer_choice=="scissors" and user_choice=="paper":
+        elif computer_choice=="scissors" and user_choice=="paper":
             computer_score=computer_score+1
         print("🧓:",user_score,"💻:",computer_score)
     if user_choice=="exit":
