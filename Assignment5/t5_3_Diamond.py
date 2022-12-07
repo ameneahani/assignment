@@ -13,5 +13,5 @@ def diamond(n):
             print("*",end="")
         print("")
 
-diamond(int(input()))
+diamond(int(input("enter n:")))
          
