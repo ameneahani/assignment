@@ -1,14 +1,13 @@
 # Stor application
 import qrcode
 PRODUCTS =[]
-pre_product=[]
+
 def read_from_database():
     f =open("database.txt",'r')
     for line in f:
         result=line.split(",")
         my_dict = {'code':result[0],'name':result[1],'price':result[2],'count':result[3]}
         PRODUCTS.append(my_dict)
-        pre_product.append(my_dict)
     f.close()
 
 def write_to_database():
@@ -19,12 +18,6 @@ def write_to_database():
         f.write(product['price']+',')
         f.write(product['count'])
     f.close()
-
-
-
-
-
-
 
 def show_menu():
     print("1- Add")
@@ -123,7 +116,6 @@ def buy():
     print("product\t\tprice\t\tcount\t\tTotal")
     for product in CART:
         print(product['name'],'\t\t',product['price'],'\t\t',product['count'],'\t\t',product['count']*int(product['price']))
-
 
 
 def make_qrcode():
