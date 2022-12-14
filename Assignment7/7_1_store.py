@@ -114,8 +114,13 @@ def buy():
             if input_code != "end":
                 print("The code not found")
     print("product\t\tprice\t\tcount\t\tTotal")
+    T_price = 0
     for product in CART:
+        T_price = T_price+product['count']*int(product['price'])
         print(product['name'],'\t\t',product['price'],'\t\t',product['count'],'\t\t',product['count']*int(product['price']))
+    print("Total price :",T_price)
+
+
 
 
 def make_qrcode():
