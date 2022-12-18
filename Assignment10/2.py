@@ -1,0 +1,6 @@
+
+
+class car:
+     
+     color = "white"
+     

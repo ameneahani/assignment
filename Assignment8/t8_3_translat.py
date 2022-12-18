@@ -10,7 +10,7 @@ def read_from_database():
     file_list=os.listdir("Assignment8")
     # print(file_list)
     if "translate1.txt" in file_list:
-        f = open("Assignment8/translate1.txt",'r')
+        f = open("translate1.txt",'r')
         words=f.read().split("\n")
         f.close()
         for i in range (0,len(words),2):
