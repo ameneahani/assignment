@@ -12,6 +12,7 @@ bot = telebot.TeleBot("5766145076:AAFOr79kAmq5vYgx70lb7HRwgB4r9aSEXsE",parse_mod
 @bot.message_handler(commands=['start'])
 def send_wellcome(message):
     user_name = message.from_user.first_name
+    print(user_name)
     bot.reply_to(message,"Wellcome dear " + user_name )
     markup = types.ReplyKeyboardMarkup()
     bts_names = ['/game','/age','/voice','/max','/argmax','/qrcode','/help']
