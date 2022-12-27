@@ -1,13 +1,36 @@
-
 class Time:
-    def __int__(self,y,mo,d,h,m,s):
-        self.year = y
-        self.month = mo
-        self.day = d
-        self.hour = h
-        self.minute = m
-        self.second = s
+    def __init__(self,h,m,s):
+        self.h = h
+        self.m = m
+        self.s = s
+        self.fix() #har vorodi be tabe ra fix mikonad
 
+    def show(self):
+        print(self.h,':',self.m,':',self.s)
+
+    def sum(self, other):
+        h = self.h + other.h
+        m = self.m + other.m
+        s = self.s + other.s
+        t = Time(h,m,s)
+        t.fix()
+        return t
+    def fix(self):
+        if self.m >= 60:
+            self.s -= 60
+            self.m +=1
+
+        if self.m >= 60:
+            self.m -= 60
+            self.h += 1
+
+        if self.s <0:
+            self.s += 60
+            self.m -= 1
+
+        if self.m < 0:
+            self.m += 60
+            self.h -= 1
 
 
 
@@ -21,6 +44,11 @@ class Time:
     def night_or_morning(self):
         ...
 
-zaman = time(1401,10,3,12,20,3)
-zaman.alarm(6,30,0)
-zaman.night_or_morning()
+t1 = Time(3,75,17)
+t1.show()
+
+t2 = Time(4,50,2)
+t2.show()
+
+t3 = t1.sum(t2)
+t3.show()
