@@ -48,16 +48,10 @@ class Media:
         i = MEDIA.index(self)
         MEDIA.pop(i)
 
-    def search(self,MEDIA):
-        i = MEDIA.index(self)
-        print("name\t\tdirector\t\tIMDB\t\tduration\t\tcasts")
-        print(MEDIA[i].name,'\t',MEDIA[i].dir,'\t',MEDIA[i].imdb,'\t\t',MEDIA[i].du,'\t\t',MEDIA[i].cast1.name+ ','+ MEDIA[i].cast2.name)
-
     def download(self):
         from pytube import YouTube
         yt = YouTube(self.url).streams.first().download()
         yt.streams.filter(progressive=True, file_extension='mp4')
-
 
 class Actor:
     def __init__(self,name_a,age):

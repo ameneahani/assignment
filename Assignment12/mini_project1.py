@@ -14,24 +14,43 @@ def show_menu():
     print("6- Download")
     print("7- Exit")
 
-def draw_table(data,header):
+def show_info(media):
+    if type(media) == Series:
+            type_media = 'series'
+            data = [media.name,media.dir,media.imdb,media.du,media.cast1.name+','+media.cast2.name,type_media,media.s+','+media.e.replace('\n','')]
+    else:
+        if type(media) == Film:
+            type_media = 'film'
+        elif type(media) == Documentary:
+            type_media = 'documentary'
+        elif type(media) == Clip:
+            type_media = 'clip'
+        data = [media.name,media.dir,media.imdb,media.du,media.cast1.name+','+media.cast2.name,type_media]
+    draw_table(data)
+
+#........................ # draw_table
+def draw_header():
+    header = ['Name','Director','IMDB','Duration','Casts','Type','Se'+ '/'+'Ep']
     print("*"*132)
-    lenth = [20,23,8,9,40,12,8]
+    l = [20,23,8,9,40,12,8]
     i = 0
     for column in header:
         print("#",end = " ")
-        print(fixed_length(column,lenth[i]),end ="")
+        print(fixed_length(column,l[i]),end ="")
         i += 1
     print()
     print("*"*132)
     
-    for row in data:
-        i = 0
-        for column in row :
-            print("#",end = " ")
-            print(fixed_length(column,lenth[i]),end ="")
-            i += 1
-        print()
+def draw_table(data):
+    l = [20,23,8,9,40,12,8]
+    i = 0
+    for column in data:
+        print("#",end = " ")
+        print(fixed_length(column,l[i]),end ="")
+        i += 1
+    print()
+
+def draw_down():
     print("*"*132)
 
 def fixed_length(text,length):
@@ -40,7 +59,7 @@ def fixed_length(text,length):
     elif len(text) < length:
         text = (text + " " *length)[:length]
         return text
-#...........................................
+#........................................ main
 MEDIA = []
 print("Welcome to mediastore")
 print("loadting ...")
@@ -85,33 +104,31 @@ while True:
             print("Not found")
 
     if choice == 4:
-        user_input = input("Enter information of media :")
-        for media in MEDIA:
-            m = [media.name,media.dir,media.du,media.imdb,media.cast1.name,media.cast2.name]
-            if user_input in m:
-                media.search(MEDIA)
-                break
-        else:
-            print("Not found")
+        print("1- Information of media, 2- Duration between time a and b (min) ")
+        choi = int(input("Enter your choice :"))
+        if choi == 1:
+            for media in MEDIA:
+                m = [media.name,media.dir,media.du,media.imdb,media.cast1.name,media.cast2.name]
+                if user_input in m:
+                    draw_header()
+                    show_info(media)
+                    break
+            else:
+                print("Not found")
+        elif choi == 2:
+            a = int(input("Enter time a:"))
+            b = int(input("Enter time b:" ))
+            draw_header()
+            for media in MEDIA:
+                if a <= int(media.du) <= b:
+                    show_info(media)
+            draw_down()
 
     if choice == 5:
-        DATA = []
-        header = ['Name','Director','IMDB','Duration','Casts','Type','Se'+ '/'+'Ep']
+        draw_header()
         for media in MEDIA:
-            if type(media) == Series:
-                type_media = 'series'
-                data = [media.name,media.dir,media.imdb,media.du,media.cast1.name+','+media.cast2.name,type_media,media.s+','+media.e.replace('\n','')]
-            else:
-                if type(media) == Film:
-                    type_media = 'film'
-                elif type(media) == Documentary:
-                    type_media = 'documentary'
-                elif type(media) == Clip:
-                    type_media = 'clip'
-                data = [media.name,media.dir,media.imdb,media.du,media.cast1.name+','+media.cast2.name,type_media]
-            # print(data)
-            DATA.append(data)
-        draw_table(DATA,header)
+            show_info(media)
+        draw_down()
 
     if choice == 6:
         user_input = input('Enter name of media :')
