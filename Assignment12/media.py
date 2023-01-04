@@ -1,31 +1,30 @@
 
 class Media:
-    def __init__(self,name,director,IMDB,duration,year,country,Url,Actor):
+    def __init__(self,name,director,IMDB,duration,Url,name_a1,age1,name_a2,age2):
         self.name = name
         self.dir = director
         self.imdb = IMDB
         self.du = duration
-        self.year = year
-        self.country = country
-        self.casts = Actor()
+        self.cast1 = Actor(name_a1,age1)
+        self.cast2 = Actor(name_a2,age2)
         self.url = Url
 
     @staticmethod
-    def add(MEDIA):
+    def add():
         name = input("Enter name :")
         dir = input("Enter director :")
         imdb = input("Enter IMDB :")
         du = input("Enter duration :")
-        year = input("Enter year of film making :")
-        country = input("Enter country :")
-        casts = input("Enter casts :")
+        cast1_name = input("Enter name of first cast :")
+        cast1_age = input("Enter age of first cast :")
+        cast2_name = input("Enter name of second cast :")
+        cast2_age = input("Enter age of second cast :")
         url = input("Enter Url :")
-        film = Media(name,dir,imdb,du,year,country,url,casts)
-        MEDIA.append(film)
+        return [name,dir,imdb,du,url,cast1_name,cast1_age,cast2_name,cast2_age]
 
     def edit(self):
         print("which field do you want to edit:")
-        choi = int(input("1- name , 2- director , 3- IMBD , 4- duration , 5- year , 6- country , 7- Url , 8- casts: "))
+        choi = int(input("1- name , 2- director , 3- IMBD , 4- duration , , 5- Url , 6- casts: "))
         if choi == 1:
             self.name = input("Enter new name:")
         elif choi == 2:
@@ -35,13 +34,12 @@ class Media:
         elif choi == 4:
             self.du = input("Enter new duration:")
         elif choi == 5:
-            self.year = input("Enter new year:")
-        elif choi == 6:
-            self.country = input("Enter new country:")
-        elif choi == 7:
             self.url = input("Enter new Url:")
-        elif choi == 8:
-            self.casts = input("Enter new casts") 
+        elif choi == 6:
+            self.cast1.name = input("Enter new name of cast1:") 
+            self.cast1.age = input("Enter new age of cast1:")
+            self.cast2.name = input("Enter newname of cast2:")
+            self.cast2.age = input("Enter new age of cast2:")
         else:
             print("Invalid input")
         print("Information update successfully ")
@@ -53,13 +51,7 @@ class Media:
     def search(self,MEDIA):
         i = MEDIA.index(self)
         print("name\t\tdirector\t\tIMDB\t\tduration\t\tcasts")
-        print(MEDIA[i].name,'\t',MEDIA[i].dir,'\t',MEDIA[i].imdb,'\t\t',MEDIA[i].du,'\t\t',MEDIA[i].casts)
-
-
-
-
-    def showinfo(self):
-        ...
+        print(MEDIA[i].name,'\t',MEDIA[i].dir,'\t',MEDIA[i].imdb,'\t\t',MEDIA[i].du,'\t\t',MEDIA[i].cast1.name+ ','+ MEDIA[i].cast2.name)
 
     def download(self):
         from pytube import YouTube
@@ -68,8 +60,8 @@ class Media:
 
 
 class Actor:
-    def __init__(self,name,age):
-        self.name = name
+    def __init__(self,name_a,age):
+        self.name = name_a
         self.age = age
 
 
