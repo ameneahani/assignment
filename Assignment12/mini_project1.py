@@ -15,15 +15,15 @@ def show_menu():
     print("7- Exit")
 
 def draw_table(data,header):
-    print("*"*135)
-    lenth = [20,23,8,14,40,8,8]
+    print("*"*132)
+    lenth = [20,23,8,9,40,12,8]
     i = 0
     for column in header:
         print("#",end = " ")
         print(fixed_length(column,lenth[i]),end ="")
         i += 1
     print()
-    print("*"*135)
+    print("*"*132)
     
     for row in data:
         i = 0
@@ -32,7 +32,7 @@ def draw_table(data,header):
             print(fixed_length(column,lenth[i]),end ="")
             i += 1
         print()
-    print("*"*135)
+    print("*"*132)
 
 def fixed_length(text,length):
     if len(text) > length:
@@ -96,15 +96,20 @@ while True:
 
     if choice == 5:
         DATA = []
-        header = ['name','director','IMDB','duration(min)','casts','season','episode']
+        header = ['Name','Director','IMDB','Duration','Casts','Type','Se'+ '/'+'Ep']
         for media in MEDIA:
             if type(media) == Series:
-                data = [media.name,media.dir,media.imdb,media.du,media.cast1.name+','+media.cast2.name,media.s,media.e.replace('\n','')]
-                print(data)
+                type_media = 'series'
+                data = [media.name,media.dir,media.imdb,media.du,media.cast1.name+','+media.cast2.name,type_media,media.s+','+media.e.replace('\n','')]
             else:
-                data = [media.name,media.dir,media.imdb,media.du,media.cast1.name+','+media.cast2.name]
-                print(data)
-            print(data)
+                if type(media) == Film:
+                    type_media = 'film'
+                elif type(media) == Documentary:
+                    type_media = 'documentary'
+                elif type(media) == Clip:
+                    type_media = 'clip'
+                data = [media.name,media.dir,media.imdb,media.du,media.cast1.name+','+media.cast2.name,type_media]
+            # print(data)
             DATA.append(data)
         draw_table(DATA,header)
 
