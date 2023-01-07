@@ -25,25 +25,26 @@ class Media:
     def edit(self):
         print("which field do you want to edit:")
         choi = int(input("1- name , 2- director , 3- IMBD , 4- duration , , 5- Url , 6- casts: "))
-        if choi == 1:
-            self.name = input("Enter new name:")
-        elif choi == 2:
-            self.dir = input("Enter new director:")
-        elif choi == 3:
-            self.imdb = input("Enter new IMDB:")
-        elif choi == 4:
-            self.du = input("Enter new duration:")
-        elif choi == 5:
-            self.url = input("Enter new Url:")
-        elif choi == 6:
-            self.cast1.name = input("Enter new name of cast1:") 
-            self.cast1.age = input("Enter new age of cast1:")
-            self.cast2.name = input("Enter newname of cast2:")
-            self.cast2.age = input("Enter new age of cast2:")
+        if choi in [1,2,3,4,5,6]:
+            if choi == 1:
+                self.name = input("Enter new name:")
+            elif choi == 2:
+                self.dir = input("Enter new director:")
+            elif choi == 3:
+                self.imdb = input("Enter new IMDB:")
+            elif choi == 4:
+                self.du = input("Enter new duration:")
+            elif choi == 5:
+                self.url = input("Enter new Url:")
+            elif choi == 6:
+                self.cast1.name = input("Enter new name of cast1:") 
+                self.cast1.age = input("Enter new age of cast1:")
+                self.cast2.name = input("Enter newname of cast2:")
+                self.cast2.age = input("Enter new age of cast2:")
+            print("Information update successfully ")
         else:
-            print("Invalid input")
-        print("Information update successfully ")
-
+            print("Invalid input!")
+        
     def remove(self,MEDIA):
         i = MEDIA.index(self)
         MEDIA.pop(i)

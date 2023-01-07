@@ -73,45 +73,51 @@ while True:
     if choice == 1:
         print("1- Film, 2- Series, 3- Documentary, 4- Clip")
         choi = int(input("Enetr type of media:"))
-        m_add = Media.add()
-        if choi == 1:
-            media = Film(m_add[0],m_add[1],m_add[2],m_add[3],m_add[4],m_add[5],m_add[6],m_add[7],m_add[8])
-        if choi == 2:
-            media = Series(m_add[0],m_add[1],m_add[2],m_add[3],m_add[4],m_add[5],m_add[6],m_add[7],m_add[8],input("Enter season:"),input("Enter episod:"))
-        if choi == 3:
-            media = Documentary(m_add[0],m_add[1],m_add[2],m_add[3],m_add[4],m_add[5],m_add[6],m_add[7],m_add[8])
-        if choi == 4:
-            media = Clip(m_add[0],m_add[1],m_add[2],m_add[3],m_add[4],m_add[5],m_add[6],m_add[7],m_add[8])
-        MEDIA.append(media)
-        print("Information update successfully ")
-    
-    if choice == 2:
+        if choi in [1,2,3,4]:
+            m_add = Media.add()
+            if choi == 1:
+                media = Film(m_add[0],m_add[1],m_add[2],m_add[3],m_add[4],m_add[5],m_add[6],m_add[7],m_add[8])
+            if choi == 2:
+                media = Series(m_add[0],m_add[1],m_add[2],m_add[3],m_add[4],m_add[5],m_add[6],m_add[7],m_add[8],input("Enter season:"),input("Enter episod:"))
+            if choi == 3:
+                media = Documentary(m_add[0],m_add[1],m_add[2],m_add[3],m_add[4],m_add[5],m_add[6],m_add[7],m_add[8])
+            if choi == 4:
+                media = Clip(m_add[0],m_add[1],m_add[2],m_add[3],m_add[4],m_add[5],m_add[6],m_add[7],m_add[8])
+            MEDIA.append(media)
+            print("Information update successfully ")
+        else:
+            print("Invalid input")
+            
+    elif choice == 2:
         user_input = input("Enter name of film that you want to edit :")
         for media in MEDIA:
-            if media.name == user_input:
+            if media.name.lower() == user_input.lower():
+                print(media.name)
                 media.edit()
                 break
         else:
-            print("Not found")
+            print("Not found!")
 
-    if choice == 3:
+    elif choice == 3:
         user_input = input("Enter name of the film that you want to remove :")
         for media in MEDIA:
-            if media.name == user_input:
+            if media.name.lower() == user_input.lower():
                 media.remove(MEDIA)
                 break
         else:
-            print("Not found")
+            print("Not found!")
 
-    if choice == 4:
+    elif choice == 4:
         print("1- Information of media, 2- Duration between time a and b (min) ")
         choi = int(input("Enter your choice :"))
         if choi == 1:
+            user_input = input("Enter some information of media:(name/director/duration/imdb/casts)")
             for media in MEDIA:
-                m = [media.name,media.dir,media.du,media.imdb,media.cast1.name,media.cast2.name]
-                if user_input in m:
+                m = [media.name.lower(),media.dir.lower(),media.du,media.imdb,media.cast1.name.lower(),media.cast2.name.lower()]
+                if user_input.lower() in m:
                     draw_header()
                     show_info(media)
+                    draw_down()
                     break
             else:
                 print("Not found")
@@ -123,22 +129,26 @@ while True:
                 if a <= int(media.du) <= b:
                     show_info(media)
             draw_down()
+        else:
+            print("Invalid input!")
 
-    if choice == 5:
+    elif choice == 5:
         draw_header()
         for media in MEDIA:
             show_info(media)
         draw_down()
 
-    if choice == 6:
+    elif choice == 6:
         user_input = input('Enter name of media :')
         for media in MEDIA:
-            if media.name == user_input:
+            if media.name.lower() == user_input.lower():
                 media.download()
         else:
             print('Not found')
 
-    if choice == 7:
+    elif choice == 7:
         data_base.write(MEDIA)
         exit(0)
+    else:
+        print("Invalid inpur! Try again")
 
